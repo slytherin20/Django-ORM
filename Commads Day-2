@@ -89,6 +89,10 @@ Icontains: will do a Where query of LIKE Type:
 >>> Category.objects.filter(category_title__icontains = "an")
 <QuerySet [<Category: Italian>, <Category: Indian>, <Category: Korean>, <Category: Mexican>, <Category: Japanese>]>
 
+Category.objects.filter(category_title__startswith='i') | Category.objects.filter(category_title__startswith='m')
+<QuerySet [<Category: Italian>, <Category: Indian>, <Category: Mexican>]>
+
+
 
 
 
