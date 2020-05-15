@@ -89,59 +89,8 @@ Icontains: will do a Where query of LIKE Type:
 >>> Category.objects.filter(category_title__icontains = "an")
 <QuerySet [<Category: Italian>, <Category: Indian>, <Category: Korean>, <Category: Mexican>, <Category: Japanese>]>
 
-OR Query-
 Category.objects.filter(category_title__startswith='i') | Category.objects.filter(category_title__startswith='m')
 <QuerySet [<Category: Italian>, <Category: Indian>, <Category: Mexican>]>
-
-Q-->
-A Q object (django.db.models.Q) is an object used to encapsulate a collection of keyword arguments. These keyword arguments are specified as in ‘Field lookups’”.
->>> from django.db.models import Q
->>> from main.models import Category
->>> Category.objects.filter(Q(category_title__startswith='i') | Q(category_title__startswith='m'))
-<QuerySet [<Category: Italian>, <Category: Indian>, <Category: Mexican>]>
-
-AND Query-
-
->>> Category.objects.filter(category_title__startswith='i') & Category.objects.filter(category_title__endswith='n')
-<QuerySet [<Category: Italian>, <Category: Indian>]>
->>> Category.objects.filter(Q(category_title__startswith='i') & Q(category_title__endswith='n'))
-<QuerySet [<Category: Italian>, <Category: Indian>]>
-
->>> Category.objects.filter(category_title__startswith='j',category_title__endswith='e')
-<QuerySet [<Category: Japanese>]>
-
-NOT Query-
-
-**gt means greater than
-**lt means less than
-
->>>Category.objects.exclude(id__gt = 3)
-<QuerySet [<Category: Italian>, <Category: Indian>, <Category: Korean>]>
-
->>> Category.objects.filter(~Q(id__gt = 3))
-<QuerySet [<Category: Italian>, <Category: Indian>, <Category: Korean>]>
-
-
-UNION Query-
-
-from main.models import Category
->>> q1 = Category.objects.filter(category_title__startswith = 'i')
->>> q2 = Category.objects.exclude(category_title__startswith = 'i')
->>> q1.union(q2)
-<QuerySet [<Category: Italian>, <Category: Indian>, <Category: Korean>, <Category: Chinese>, <Category: Mexican>, <Category: Japanese>, <Category: Thai>]>
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
