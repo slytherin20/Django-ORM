@@ -130,6 +130,24 @@ from main.models import Category
 >>> q1.union(q2)
 <QuerySet [<Category: Italian>, <Category: Indian>, <Category: Korean>, <Category: Chinese>, <Category: Mexican>, <Category: Japanese>, <Category: Thai>]>
 
+>>> Category.objects.all().values_list("category_title").union(Category.objects.all().values_list("category_title"))
+<QuerySet [('Chinese',), ('Indian',), ('Italian',), ('Japanese',), ('Korean',), ('Mexican',), ('Thai',)]>
+
+
+Subquery Query-
+
+>>> from django.db.models import Subquery
+>>> q = Comment.objects.filter(name = Subquery(user.values('username')))
+>>> q
+
+Annotate()--
+It is used like using aggregation + group by.
+
+
+
+
+
+
 
 
 
